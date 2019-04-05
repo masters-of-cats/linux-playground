@@ -50,6 +50,11 @@
     - wget
     - zsh
 
+  - name: add go to secure path
+    become: true
+    become_method: sudo
+    command: /bin/bash -c "if ! sudo grep -q go/bin /etc/sudoers; then sudo sed -i 's$secure_path=\"$secure_path=\"/usr/local/go/bin:$' /etc/sudoers; fi"
+
   - name: install neovim pip package
     pip: name=neovim executable=/usr/bin/pip
 
@@ -90,3 +95,20 @@
 
   - name: clone vim config
     git: repo=https://github.com/luan/vimfiles dest=~/.vim
+
+  - stat:
+      path: /vagrant_data/src/github.com/opencontainers/runc
+    register: runc_path
+
+  - name: build runc
+    make:
+      chdir: /vagrant_data/src/github.com/opencontainers/runc
+    when: runc_path.stat.isdir is defined and runc_path.stat.isdir
+
+  - name: install runc
+    make:
+      chdir: /vagrant_data/src/github.com/opencontainers/runc
+      target: install
+    become: true
+    become_method: sudo
+    when: runc_path.stat.isdir is defined and runc_path.stat.isdir

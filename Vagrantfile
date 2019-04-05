@@ -4,7 +4,7 @@
 Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu/artful64"
 
-  default_shared_folder = "#{ENV.fetch('HOME')}/workspace"
+  default_shared_folder = "#{ENV.fetch('HOME')}/workspace/garden-runc-release/src/gopath"
   shared_folder = ENV.fetch('LINUX_PLAYGROUND_SHARED_DIR', default_shared_folder)
   config.vm.synced_folder shared_folder, "/vagrant_data"
 
@@ -19,8 +19,7 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.provision "shell" do |s|
-    s.inline = "sudo apt-get update && sudo apt-get install -y python-dev && "
-    s.inline += "if ! sudo grep -q go/bin /etc/sudoers; then sudo sed -i 's$secure_path=\"$secure_path=\"/usr/local/go/bin:$' /etc/sudoers; fi"
+    s.inline = "sudo apt-get update && sudo apt-get install -y python-dev"
   end
 
   config.vm.provision "ansible" do |ansible|

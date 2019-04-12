@@ -11,8 +11,10 @@ log() {
 
 log "Oh boy, here I go installin' again!"
 
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
 (
-cd "$(dirname "$0")"
+cd "$DIR"
 vagrant up --provision --provider virtualbox
 )
 

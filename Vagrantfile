@@ -18,9 +18,7 @@ Vagrant.configure("2") do |config|
     vb.memory = ENV.fetch('LINUX_PLAYGROUND_MEMORY', 2048)
   end
 
-  config.vm.provision "shell" do |s|
-    s.inline = "sudo apt-get update && sudo apt-get install -y python-dev"
-  end
+  config.vm.provision "shell", inline: "apt-get update && apt-get install -y python-dev"
 
   config.vm.provision "ansible" do |ansible|
     ansible.playbook = "playbook.yml"

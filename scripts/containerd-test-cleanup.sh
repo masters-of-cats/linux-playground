@@ -14,6 +14,9 @@ for container in $containers; do
   find /sys/fs/cgroup -name "$container" -print0 | xargs -r -0 rmdir
 done
 
+mount | grep overlay | cut -d ' ' -f 3 | xargs umount
+
 rm -rf /run/containerd/runc/*
 rm -rf /run/containerd/fifo/*
 rm -rf /run/containerd-test/*
+

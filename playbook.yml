@@ -109,3 +109,8 @@
     become: true
     become_method: sudo
     when: runc_path.stat.isdir is defined and runc_path.stat.isdir
+
+  - name: install docker
+    become: true
+    become_method: sudo
+    shell: curl -sSL https://get.docker.com/ | sh

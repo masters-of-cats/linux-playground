@@ -1,6 +1,6 @@
 mkrunc () {
   pushd $GOPATH/src/github.com/opencontainers/runc
-    make && sudo make install
+    make BUILDTAGS='seccomp apparmor' static && sudo make install
   popd
 }
 

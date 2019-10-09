@@ -18,7 +18,7 @@ mkctrd () {
 
 testctrd () {
   pushd $GOPATH/src/github.com/containerd/containerd
-    make integration
+    TEST_RUNTIME=io.containerd.runtime.v1.linux make integration
   popd
 }
 

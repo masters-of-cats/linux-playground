@@ -3,11 +3,6 @@
   vars:
     downloads_dir: /tmp/downloads
   tasks:
-  - name: use whole partition
-    become: true
-    become_method: sudo
-    command: resize2fs /dev/sda1
-
   - name: add apt repositories
     become: true
     become_method: sudo
@@ -90,7 +85,7 @@
     unarchive: copy=no src={{downloads_dir}}/go.tar.gz dest=/usr/local creates=/usr/local/go
 
   - name: clone vim config
-    git: repo=https://github.com/luan/vimfiles dest=~/.vim
+    git: repo=https://github.com/masters-of-cats/a-new-hope dest=~/.config/nvim
 
   - name: install docker
     shell: curl -sSL https://get.docker.com/ | sh

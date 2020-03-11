@@ -2,7 +2,7 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "ubuntu/cosmic64"
+  config.vm.box = 'bento/ubuntu-19.10'
 
   default_shared_folder = "#{ENV.fetch('HOME')}/workspace/garden-runc-release/src/gopath"
   shared_folder = ENV.fetch('LINUX_PLAYGROUND_SHARED_DIR', default_shared_folder)

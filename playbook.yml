@@ -77,7 +77,7 @@
       dest: ~/.tmux/plugins/tpm
 
   - name: download go
-    get_url: url=https://dl.google.com/go/go1.12.4.linux-amd64.tar.gz dest={{downloads_dir}}/go.tar.gz
+    get_url: url=https://dl.google.com/go/go1.14.2.linux-amd64.tar.gz dest={{downloads_dir}}/go.tar.gz
 
   - name: extract go
     become: true
